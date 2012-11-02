@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+Beispiel und Grundlage (Framework) für das Praktikum "Kommunikationssysteme".
+<br/>
+Mit den hier enthaltenen Quelltexten und Bibliotheken können Anwendungen implementiert werden,
+die in der Lage sind, auf Basis eines TCP/IP-Protokollstacks (TCP - Transport Control Protocol, IP - Internet Protocol)
+über ein LAN (Local Area Network) miteinander zu kommunizieren.<br/>
+Die Programmtexte "praktikum/beispiele/beispiel1/HttpBeispiel.groovy" und
+"praktikum/beispiele/beispiel1/Stack.groovy" beinhalten die grundlegenden Funktionnalitäten.<br/>
+Achtung: das Programmbeispiel enthält nur die für das Anwendungsbeispiel notwendigen Fragmente der Protokolle!<br/>
+Viele (die meisten) Algorithmen z.B. in TCP sind nicht implementiert und müssen bei Bedarf hinzugefügt werden!<br/>
+Das Shell-Skript "start.sh" startet das Beispielprogramm von der Kommandozeile.
+Die XML-Datei build.xml ist ein "ant"-Skript u.a. zur Generierung der Dokumentation und z.B. eines jar-Archives
+des Projekts, das zum Ausführen nur eine Java-Installation (kein Groovy) benötigt.
+"ant" ist ein Java-basiertes Tool zur Organisation von Programmierprojekten (ein erweitertes "make").
+<p/>
+Die verwendete Programmiersprache ist Groovy, welche auf der Sprache Java aufsetzt.<br/>
+<br/>
+Arbeiten Sie mit Kopien der Quellen, damit behalten Sie die Übereinstimmung des Beispiels
+mit der Dokumentation!
+<br/>
+Sehr zu empfehlen ist die Arbeit mit einem Entwicklungswerkzeug wie "IntelliJ IDEA" oder "Eclipse".
+<p/>
+Ausserdem finden Sie Beispiele für einige Programmentwicklungs-Technologien wie Unit-Testing, Mocking,
+Umgang mit Konfigurationsdaten, Programmdokumentation.
+Die Programme sind mit Absicht einfach, mit wenig Tricks und nicht vollständiger Ausnutzung der
+Möglichkeiten der Programmiersprache geschrieben.
+<p/>
+Es wird die Programmier-Bibliothek "Jpcap" verwendet. Sie organisiert den Empfang und das Senden von MAC-Frames
+(MAC - Medium Access Control, Frame - Datenpaket).
+Dazu schaltet sie die MAC-Adresserkennung der Netzwerkkarte ab, so das MAC-Frames unabhängig von der
+Ziel-MAC-Adresse empfangen werden. Deshalb müssen Programme, die Jpcap verwenden mit Administratorrechten laufen.
+Ausserdem sammelt die Bibliothek Protokollinformationen und generiert daraus Java-Objekte (TCP-, IP-Pakete, ...)
+<p/>
+Im Ordner "libs" befindet sich ein Teil der benötigten Bibliothek "Jpcap" als jar-Archiv. Ein anderer muß für
+das verwendete Betriebssystem generiert und installiert werden. Auf den Rechnern im Labor ist das bereits geschehen.
+<p/>
+Dokumentation der Programmierbibliothek Bibliothek "jpcap" siehe hier: <a href="jpcap/index.html">Jpcap Dokumentation</a>.<br/>
+In "praktikum/jpcap_beispiele" sind Beispiele zur Verwendung der Bibliothek zu finden.<br/>
+<p/>
+Im Ordner "testing" sind Programmtexte für das Unit-Testing des Beispiels zu finden. Das Testprogramm
+ist so gestaltet, das kein wirklicher Netzwerkverkehr generiert wird - es ist also ein "Trockentest".
+Verwendet wird das Verfahren des "Mockings", bei dem Klassen bzw. Instanzen transparent durch steuerbare
+Testinstanzen ersetzt werden. Im Beispiel werden z.B. die Methoden zum wirklichen Senden von Datenpaketen
+"gemocked" und so wirklicher Netzwerkverkehr verhindert.<br/>
+Mocking ist in Groovy eingebaut. Informieren Sie sich!
+</body>
+</html>

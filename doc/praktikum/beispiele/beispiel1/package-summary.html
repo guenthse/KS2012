@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<title>praktikum.beispiele.beispiel1 (Praktikum)</title>
+<META NAME="keywords" CONTENT="praktikum.beispiele.beispiel1 package">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../stylesheet.css" TITLE="Style">
+<link href="../../../groovy.ico" type="image/x-icon" rel="shortcut icon">
+<link href="../../../groovy.ico" type="image/x-icon" rel="icon">
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title="praktikum.beispiele.beispiel1 (Praktikum)";
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</head>
+
+<body BGCOLOR="white" onload="windowTitle();">
+<hr>
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<a name="navbar_top"><!-- --></a>
+<table summary="" width="100%" border="0" cellpadding="1" cellspacing="0">
+<tbody><tr>
+<td colspan="2" class="NavBarCell1" bgcolor="#eeeeff">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table summary="" border="0" cellpadding="0" cellspacing="3">
+  <tbody><tr valign="top" align="center">
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1Rev" bgcolor="#ffffff"> &nbsp;<font class="NavBarFont1Rev"><b>Package</b></font>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <!--
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  -->
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../deprecated-list.html"><font class="NavBarFont1"><b>Deprecated</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../index-all.html"><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</tbody></table>
+</td>
+<td rowspan="3" valign="top" align="right"><em>
+    <b>Praktikum Kommunikationssysteme</b>
+</em>
+</td>
+</tr>
+
+<tr>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+  <a href="../../../index.html?praktikum/beispiele/beispiel1/package-summary.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="package-summary.html" target="_top"><b>NO FRAMES</b></a>  &nbsp;
+&nbsp;<script type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../allclasses-frame.html"><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+  <A HREF="../../../allclasses-frame.html"><B>All Classes</B></A>
+</noscript>
+
+
+</font></td>
+</tr>
+</tbody></table>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+
+<HR>
+<H2>
+Package praktikum.beispiele.beispiel1
+</H2>
+
+
+Das Beispielprogramm.
+<p/>
+In <a href='../../../praktikum/beispiele/beispiel1/HttpBeispiel.html' title='HttpBeispiel'>HttpBeispiel</a> muß der Name einer Ablaufumgebung angegeben werden:<br/>
+"String environment = 'name'".<br/>
+Der Name muß einem "environment" in "praktikum/beispiele/env.conf" entsprechen.<br/>
+In der Methode "Stack.start" kann ein Filter konfiguriert werden,
+so das nur den Versuch betreffende Frames empfangen werden. Der Filterausdruck entspricht dem des Kommandos "tcpdump".<p/>
+Unter Umständen ist eine Firewall-Regel (hier für Linux) hinzuzufügen:<br/>
+iptables -A INPUT -p tcp --dport 33333 -j DROP<br/>
+Damit reagiert der TCP/IP-Stack des Betriebssystems nicht auf eingehende Pakete an den im Framework verwendeten Port.<p/>
+Der Start des Programms erfolgt vorzugsweise unter Steuerung einer Entwicklungsumgebung.<br/>
+Starten von der Kommandozeile im Projektverzeichnis ("KS-Praktikum") aus:<br/>
+.&nbsp&nbsp&nbspstart.sh [-e environment]<br/>
+Oder:<br/>
+chmod +x start.sh<br/>
+./start.sh [-e environment]
+<p/>
+Falls ein jar-File erzeugt wurde:<br/>
+Entpacken des jar-Files in ein Verzeichnis ("unzip KS_Praktikum.jar").<br/>
+Dann in diesem Verzeichnis starten mit:<br/>
+.&nbsp&nbsp&nbspstartbin.sh [-e environment]
+<p/>
+Nachfolgend die generelle Programmstruktur:<br/>
+Die Organisation übernimmt der Thread "processQueues".
+In ihm werden die Warteschlangen für Kommandos, Daten, empfangene und zu
+sendende Pakete überwacht und bei Bedarf die Methoden "sender.sendPacket",
+"processTCPPacket" und "processCommand" gerufen. Die Anwendung kommuniziert über zwei Queues mit
+"processQueues". "receivePacket" wird von Jpcap für jeden empfangenen MAC-Frame gerufen.
+<pre>
+
+                   A  n  w  e  n  d  u  n  g (Klasse HttpBeispiel)
+                     |                 ↑(16. falls Anwendungsdaten empfangen wurden)
+                     |                 |
+      --------------------------------------------------------------------------------
+                     ↓1.               |
+              cmdQueue               resultQueue
+                    |                     ↑(15. falls Anwendungsdaten empfangen wurden)
+                    |                     |
+                    ↓2.                   |  7.,17.                 8.,18.
+                  processQueues  ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯|⎯⎯⎯⎯⎯⎯> sender.sendPacket  ⎯⎯> zum Netzwerk
+                  ↑12.|   |   ↑6.,16.     |
+                  |   |   |   |           |
+        recvTCPQueue  |   |  sendQueue    |
+          ↑11.        |   |     ↑5.,15.   |
+          |           |   |     |         |
+    receivePacket     |   |  handleStateChange
+      ↑10.            |   |        ↑4.  ↑14.
+      |               |   ↓3.      |    |
+      |               | processCommand  |
+      |               |                 |
+      |               ↓13.              |
+      |               processTCPPacket＿⏌
+    Jpcap
+      ↑9.,19.
+      |
+ vom Netzwerk
+
+
+</pre>
+Das Protokoll zwischen den TCP-Instanzen verläuft im Beispiel folgendermaßen:
+<pre>
+    ==============================================================================================================
+    Client sendet Paket                     Server sendet Paket                   Bemerkung
+    ==============================================================================================================
+    SYN                                                                           Beginn des Verbindungsaufbaus
+    ..............................................................................................................
+                                            ACK + SYN                             Bestätigung des Aufbaus
+    ..............................................................................................................
+    ACK                                                                           Abschliessende Bestätigung
+    ..............................................................................................................
+    "GET /xyx HTTP/1.1"                                                           Beginn der Datenübertragung
+    ..............................................................................................................
+                                            ACK                                   Bestätigung des Empfangs
+    ..............................................................................................................
+                                            "HTTP/1.1 404 ..."                    Anwendungsdaten
+    ..............................................................................................................
+    ACK                                                                           Bestätigung des Empfangs
+    ..............................................................................................................
+                                            "..."                                 Anwendungsdaten
+    ..............................................................................................................
+    ACK                                                                           Bestätigung des Empfangs
+    ..............................................................................................................
+    ...                                     ...                                   ...
+    ..............................................................................................................
+    FIN                                                                           Beginn des Verbindungsabbaus
+    ..............................................................................................................
+                                            ACK + FIN                             Bestätigung des Abbaus
+    ..............................................................................................................
+    ACK                                                                           Abschliessende Bestätigung
+    ..............................................................................................................
+</pre>
+Die vom Server gelieferten Daten entsprechen im Beispiel nicht der angeforderten (fiktiven) Web-Seite "xyz", sondern beinhaltet
+eine Fehlermeldung.
+
+
+<P>&nbsp;</P>
+
+
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Class Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="HttpBeispiel.html" title="class in praktikum/beispiele/beispiel1">HttpBeispiel</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Stack.html" title="class in praktikum/beispiele/beispiel1">Stack</A></B></TD>
+        <TD>Der Netzwerkstack.
+ </TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+
+
+
+
+<p>Praktikum Kommunikationssysteme Version 1.1.3</p>
+<hr>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="KS_Praktikum" basedir=".">
+
+    <property name="version" value="1.1.3"/>
+
+    <!-- "basedir" wird während des Laufs automatisch gesetzt (das oberste Verzeichnis im Baum) -->
+    <property name="lib.dir" value="${basedir}/libs"/>
+    <property name="dist.dir" value="${basedir}/dist"/>
+    <property name="proj.dir" value="${basedir}/proj"/>
+    <property name="doc.dir" value="${basedir}/doc"/>
+    <property name="build.dir" value="${basedir}/out/production"/>
+    <property name="jarfile" value="${dist.dir}/KS_Praktikum.jar"/>
+    <property name="zipfile" value="${dist.dir}/KS_Praktikum.zip"/>
+    <property name="jar.class.path" value=". libs/jpcap.jar libs/groovy-all-2.0.0.jar libs/commons-cli-1.2.jar"/>
+
+    <path id="groovy.all">
+        <fileset dir="/Applications/groovy-2/lib" >
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+	<!-- ================================= 
+          target: doc              
+         ================================= -->
+    <taskdef name="groovydoc" classname="org.codehaus.groovy.ant.Groovydoc"
+             classpathref="groovy.all"/>
+
+    <target name="doc" description="--> Generiert die Dokumentation in doc.dir">
+        <mkdir dir="${doc.dir}"/>
+        <mkdir dir="${doc.dir}/samples"/>
+        <groovydoc
+    	        destdir="doc"
+    	        sourcepath="src"
+    	        packagenames="praktikum.beispiele.*"
+    	        use="true"
+                overview="src/praktikum/overview.html"
+    	        windowtitle="Praktikum"
+    	        doctitle="Praktikum"
+    	        header="Praktikum Kommunikationssysteme"
+    	        footer="Praktikum Kommunikationssysteme Version ${version}"
+    	        private="true">
+            <link packages="java.,org.xml.,javax.,org.xml." href="http://docs.oracle.com/javase/6/docs/api/"/>
+            <link packages="org.apache.ant.,org.apache.tools.ant." href="http://www.dpml.net/api/ant/1.7.0"/>
+            <link packages="org.junit.,junit.framework." href="http://kentbeck.github.com/junit/javadoc/latest/"/>
+            <link packages="groovy.,org.codehaus.groovy." href="http://groovy.codehaus.org/api/"/>
+            <link packages="jpcap." href="http://netresearch.ics.uci.edu/kfujii/Jpcap/doc/javadoc/"/>
+        </groovydoc>
+    </target>
+
+    <!-- =================================
+          target: dist
+         ================================= -->
+    <target name="dist" description="--> Packen der Quelldateien in ein zip-File in dist.dir" depends="doc">
+        <mkdir dir="${dist.dir}"/>
+        <delete file="${zipfile}"/>
+        <zip destfile="${zipfile}">
+            <zipfileset dir="src/praktikum" prefix="src/praktikum"/>
+            <zipfileset dir="testing/praktikum" prefix="testing/praktikum"/>
+            <zipfileset dir="libs" prefix="libs"/>
+            <zipfileset dir="doc" prefix="doc"/>
+            <zipfileset dir="." includes="start.sh,build.xml,startbin.sh" prefix="."/>
+        </zip>
+    </target>
+
+    <!-- =================================
+          target: jardist
+         ================================= -->
+    <target name="jardist" description="--> Packen der Klassen in ein jar-File in dist.dir">
+        <mkdir dir="${dist.dir}"/>
+        <delete file="${jarfile}"/>
+        <jar jarfile="${jarfile}"
+             basedir="${build.dir}/praktikum"
+             excludes="**/*.html,**/jpcap_beispiele/**"
+                >
+            <fileset dir="${build.dir}/praktikum"
+                     includes="**./*.class"
+                    />
+            <fileset dir="${basedir}/src"
+                     includes="praktikum/beispiele/env.conf"
+                    />
+            <fileset dir="${basedir}"
+                     includes="libs/*,startbin.sh"
+                    />
+            <manifest>
+                <attribute name="Main-Class"
+                           value="praktikum.beispiele.beispiel1.HttpBeispiel"/>
+                <attribute name="Class-Path" value="${jar.class.path}"/>
+
+            </manifest>
+        </jar>
+    </target>
+
+</project>

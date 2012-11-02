@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Framework</title>
+</head>
+<body>
+Das Framework.
+<br/>
+In der Datei "env.conf" können verschiedene Ablauf-Konfigurationen eingestellt werden.<br/>
+
+    Eingetragen werden müssen:<br/>
+    - die eigene IP-Adresse<br/>
+    - die eigene MAC-Adresse<br/>
+    - der Gerätename des Netzwerkadapters<br/>
+    Diese Informationen werden vom Kommando "ifconfig -a" geliefert.<br/>
+    - die IP-Adresse der Webservers<br/>
+    Geliefert durch die Kommandos "host hostname" oder "ping hostname".<br/>
+    - die MAC-Adresse des nächsten Ziels im LAN (entweder des Web-Servers selbst oder eines Routers,
+    falls der Web-Server nur über ein oder mehrere solcher "Zwischen-Geräte" erreichbar ist)<br/>
+    Geliefert durch das Kommando "arp -an"<br/>
+<br/>
+Ein Auszug aus "env.conf":
+<pre>
+...
+// Auswahl einer Ablaufumgebung durch setzen der Konstanten "environment" in der Klasse "HttpBeispiel"
+// oder Angabe eines Parameters in der Kommandozeile z.B. "-e "unikabel"
+environments {
+    ...
+    // ********* Uni Kabel ********** //
+    unikabel {
+        ownIPAddress = "141.20.33.23"
+        ownMacAddress = "40:6c:8f:11:9e:38"
+        // Router 141.20.33.1
+        destinationMacAddress = "00:1b:ed:18:1e:00"
+        // www.google.de
+        httpServerIPAddress = "173.194.69.94"
+        // Gerätename (Mac OS X, Monitor-Adapter)
+        deviceName = "en4"
+    }
+    ...
+}
+</pre>
+
+</body>
+</html>

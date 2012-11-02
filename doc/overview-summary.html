@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<title>Overview (Praktikum)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<META NAME="keywords" CONTENT="Overview">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="stylesheet.css" TITLE="Style">
+<link href="groovy.ico" type="image/x-icon" rel="shortcut icon">
+<link href="groovy.ico" type="image/x-icon" rel="icon">
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title="Overview (Praktikum)";
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+</head>
+<body BGCOLOR="white" onload="windowTitle();">
+<hr>
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<a name="navbar_top"><!-- --></a>
+<table summary="" width="100%" border="0" cellpadding="1" cellspacing="0">
+<tbody><tr>
+<td colspan="2" class="NavBarCell1" bgcolor="#eeeeff">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table summary="" border="0" cellpadding="0" cellspacing="3">
+  <tbody><tr valign="top" align="center">
+  <td class="NavBarCell1Rev" bgcolor="#ffffff"> &nbsp;<font class="NavBarFont1Rev"><b>Overview</b></font>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <font class="NavBarFont1">Package</font>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <!--
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  -->
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="deprecated-list.html"><font class="NavBarFont1"><b>Deprecated</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="index-all.html"><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</tbody></table>
+</td>
+<td rowspan="3" valign="top" align="right"><em>
+<b>Praktikum Kommunikationssysteme</b>
+</em>
+</td>
+</tr>
+
+<tr>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+  <a href="index.html?overview-summary.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>  &nbsp;
+&nbsp;<script type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-frame.html"><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+  <A HREF="allclasses-frame.html"><B>All Classes</B></A>
+</noscript>
+
+
+</font></td>
+</tr>
+</tbody></table>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<center>
+<h1>
+Praktikum</h1>
+</center>
+<p>Beispiel und Grundlage (Framework) für das Praktikum "Kommunikationssysteme".
+</p>
+<P>
+
+<B>See:</B>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#overview_description"><B>Description</B></A>
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Packages</B></FONT></TH>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="20%"><B><A HREF="praktikum/beispiele/package-summary.html">praktikum.beispiele</A></B></TD>
+<TD>Das Framework.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="20%"><B><A HREF="praktikum/beispiele/beispiel1/package-summary.html">praktikum.beispiele.beispiel1</A></B></TD>
+<TD>Das Beispielprogramm.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="20%"><B><A HREF="praktikum/beispiele/fsm/package-summary.html">praktikum.beispiele.fsm</A></B></TD>
+<TD>Eine Finite Zustands Maschine.</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="20%"><B><A HREF="praktikum/beispiele/utils/package-summary.html">praktikum.beispiele.utils</A></B></TD>
+<TD>Verschiedene Klassen und Methoden zur Arbeitserleichterung</TD>
+</TR>
+
+</TABLE>
+
+<P>
+
+&nbsp;<A NAME="overview_description"><!-- --></A>
+<P>
+
+<p>
+Beispiel und Grundlage (Framework) für das Praktikum "Kommunikationssysteme".
+<br/>
+Mit den hier enthaltenen Quelltexten und Bibliotheken können Anwendungen implementiert werden,
+die in der Lage sind, auf Basis eines TCP/IP-Protokollstacks (TCP - Transport Control Protocol, IP - Internet Protocol)
+über ein LAN (Local Area Network) miteinander zu kommunizieren.<br/>
+Die Programmtexte "praktikum/beispiele/beispiel1/HttpBeispiel.groovy" und
+"praktikum/beispiele/beispiel1/Stack.groovy" beinhalten die grundlegenden Funktionnalitäten.<br/>
+Achtung: das Programmbeispiel enthält nur die für das Anwendungsbeispiel notwendigen Fragmente der Protokolle!<br/>
+Viele (die meisten) Algorithmen z.B. in TCP sind nicht implementiert und müssen bei Bedarf hinzugefügt werden!<br/>
+Das Shell-Skript "start.sh" startet das Beispielprogramm von der Kommandozeile.
+Die XML-Datei build.xml ist ein "ant"-Skript u.a. zur Generierung der Dokumentation und z.B. eines jar-Archives
+des Projekts, das zum Ausführen nur eine Java-Installation (kein Groovy) benötigt.
+"ant" ist ein Java-basiertes Tool zur Organisation von Programmierprojekten (ein erweitertes "make").
+<p/>
+Die verwendete Programmiersprache ist Groovy, welche auf der Sprache Java aufsetzt.<br/>
+<br/>
+Arbeiten Sie mit Kopien der Quellen, damit behalten Sie die Übereinstimmung des Beispiels
+mit der Dokumentation!
+<br/>
+Sehr zu empfehlen ist die Arbeit mit einem Entwicklungswerkzeug wie "IntelliJ IDEA" oder "Eclipse".
+<p/>
+Ausserdem finden Sie Beispiele für einige Programmentwicklungs-Technologien wie Unit-Testing, Mocking,
+Umgang mit Konfigurationsdaten, Programmdokumentation.
+Die Programme sind mit Absicht einfach, mit wenig Tricks und nicht vollständiger Ausnutzung der
+Möglichkeiten der Programmiersprache geschrieben.
+<p/>
+Es wird die Programmier-Bibliothek "Jpcap" verwendet. Sie organisiert den Empfang und das Senden von MAC-Frames
+(MAC - Medium Access Control, Frame - Datenpaket).
+Dazu schaltet sie die MAC-Adresserkennung der Netzwerkkarte ab, so das MAC-Frames unabhängig von der
+Ziel-MAC-Adresse empfangen werden. Deshalb müssen Programme, die Jpcap verwenden mit Administratorrechten laufen.
+Ausserdem sammelt die Bibliothek Protokollinformationen und generiert daraus Java-Objekte (TCP-, IP-Pakete, ...)
+<p/>
+Im Ordner "libs" befindet sich ein Teil der benötigten Bibliothek "Jpcap" als jar-Archiv. Ein anderer muß für
+das verwendete Betriebssystem generiert und installiert werden. Auf den Rechnern im Labor ist das bereits geschehen.
+<p/>
+Dokumentation der Programmierbibliothek Bibliothek "jpcap" siehe hier: <a href="jpcap/index.html">Jpcap Dokumentation</a>.<br/>
+In "praktikum/jpcap_beispiele" sind Beispiele zur Verwendung der Bibliothek zu finden.<br/>
+<p/>
+Im Ordner "testing" sind Programmtexte für das Unit-Testing des Beispiels zu finden. Das Testprogramm
+ist so gestaltet, das kein wirklicher Netzwerkverkehr generiert wird - es ist also ein "Trockentest".
+Verwendet wird das Verfahren des "Mockings", bei dem Klassen bzw. Instanzen transparent durch steuerbare
+Testinstanzen ersetzt werden. Im Beispiel werden z.B. die Methoden zum wirklichen Senden von Datenpaketen
+"gemocked" und so wirklicher Netzwerkverkehr verhindert.<br/>
+Mocking ist in Groovy eingebaut. Informieren Sie sich!
+</p>
+
+<hr>
+
+<P>Praktikum Kommunikationssysteme Version 1.1.3</P>
+<hr>
+</body>
+</html>
